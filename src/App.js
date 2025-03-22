@@ -1,10 +1,11 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import {Main, Login, Registr} from './components/index'
+import {Main, Login, Registr, Navbar} from './components/index'
 
 function App() {
   return (
     <div>
+      <Navbar />
       <Routes >
         <Route path="/" element={<Main/>} />
         <Route path="/login" element={<Login />} />

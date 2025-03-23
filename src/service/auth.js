@@ -11,7 +11,9 @@ const AuthServices = {
         return data;
     },
     async getUser(){
-        // const response = await axios.get('/user')
+        const {data} = await axios.get('/user')
+        
+        return data;
     },
 //   login: async (email, password) => {
 //     try {

@@ -4,6 +4,7 @@ const initialState = {
     isLoading: false,
     loggedIn: false,
     user: null,
+    erroe: null,
 };
 
 export const authSlice = createSlice({
@@ -27,10 +28,12 @@ export const authSlice = createSlice({
     },
     registrUserSuccess: (state, action) => {
       state.loggedIn = true;
+      state.isLoading = false;
       state.user = action.payload;
     },
     registrUserFailure: (state) => {
       state.isLoading = false;
+      state.error = "Something went wrong";
     },
     logout: (state) => {
       state.user = null;

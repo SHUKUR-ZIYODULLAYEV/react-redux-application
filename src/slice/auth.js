@@ -30,6 +30,8 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
+      state.loggedIn = false;
+      state.isLoading = false;
     },
   },
 });

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { getArticleDetailStart, getArticleDetailSuccess } from '../slice/article'
+import { getArticleDetailFailure, getArticleDetailStart, getArticleDetailSuccess } from '../slice/article'
 import ArticleService from '../service/article'
 import { useDispatch } from 'react-redux'
 

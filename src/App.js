@@ -3,7 +3,9 @@ import { Route, Routes } from 'react-router-dom'
 import {Main, Login, Registr, Navbar} from './components/index'
 import AuthServices from './service/auth'
 import { useDispatch } from 'react-redux'
-import { signUserSuccess } from './slice/auth'
+import { signUserStart, signUserSuccess } from './slice/auth'
+import ArticleService from './service/article'
+import { getArticleListFailure, getArticleListSuccess, getArticleListrStart } from './slice/article'
 
 function App() {
   const dispatch = useDispatch()
@@ -15,11 +17,24 @@ function App() {
       console.log(error);
     }
   }
+
+  const getArticleList = async () => {
+    dispatch(getArticleListrStart())
+    try {
+      const response = await ArticleService.getArticleList()
+      console.log("response", response);
+      dispatch(getArticleListSuccess(response.articles))
+    } catch (error) {
+      console.log("error", error);
+      dispatch(getArticleListFailure(error.response.data.errors))
+    }
+  }
   useEffect(() => {
     const token = localStorage.getItem('token')
     if(token){
       getUser()
     }
+    getArticleList()
   }, [])
   return (
     <div>

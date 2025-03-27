@@ -27,6 +27,7 @@ function Navbar() {
           loggedIn ? (
             <>
               <p  className="me-3 py-2 m-0   text-dark text-decoration-none">{user.username}</p>
+              <Link to={'/create-article'} className="me-3 py-2 text-dark text-decoration-none" >Create article</Link>
               <button className='btn btn-outline-danger' onClick={logoutHendler}  >Logout</button>
               {/* <Link to={'/'} className="me-3 py-2 text-dark text-decoration-none" >Home</Link>
               <Link to={'/profile'} className="me-3 py-2 text-dark text-decoration-none" >Profile</Link>

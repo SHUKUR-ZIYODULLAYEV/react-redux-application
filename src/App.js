@@ -2,13 +2,15 @@ import React, { use, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import {Main, Login, Registr, Navbar, ArticleDetail, CreateArticle} from './components/index'
 import AuthServices from './service/auth'
-import { useDispatch } from 'react-redux'
-import { signUserStart, signUserSuccess } from './slice/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { signUserSuccess } from './slice/auth'
 import ArticleService from './service/article'
 import { getArticleListFailure, getArticleListSuccess, getArticleListrStart } from './slice/article'
 
 function App() {
   const dispatch = useDispatch()
+  const article = useSelector(state => state.article)
+  
   const getUser = async () => {
     try {
       const response = await AuthServices.getUser()
@@ -35,7 +37,7 @@ function App() {
       getUser()
     }
     getArticleList()
-  }, [])
+  }, [article.articles.length])
   return (
     <div>
       <Navbar />

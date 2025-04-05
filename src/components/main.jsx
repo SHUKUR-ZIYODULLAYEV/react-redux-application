@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom'
 
 function Main() {
   const {articles, isLoading} = useSelector(state => state.article)
+  const {loggedIn, user} = useSelector(state => state.auth)
   const navigate = useNavigate()
+
+  const delateArticle = async slug  =>{
+
+  }
   return (
     <>
       {isLoading && <Loader />}
@@ -26,8 +31,14 @@ function Main() {
                   <div className=" card-footer d-flex justify-content-between align-items-center">
                     <div className="btn-group">
                       <button onClick={() => navigate(`/article/${article.slug}`)} type="button" className="btn btn-sm btn-outline-success">View</button>
-                      <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" className="btn btn-sm btn-outline-danger">Delate</button>
+                      {
+                        loggedIn && user.username == article.author.username && (
+                          <>
+                          <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+                          <button type="button" className="btn btn-sm btn-outline-danger">Delate</button>
+                          </>
+                        )
+                      }
                     </div>
                     <small className="text-body-secondary fw-bold text-capitalize "> {article.author.username} </small>
                   </div>
